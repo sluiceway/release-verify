@@ -29,6 +29,12 @@ resources:
         TOKEN: ${token}
     options:
       version: 1.2.1
+  # One more resource, so the diff changes (release verification, scenario 5).
+  suffix:
+    type: random:RandomId
+    properties:
+      byteLength: 2
+    options:
+      version: 4.21.2
 outputs:
   name: ${name.id}
-# A comment changes no diff (release verification, scenario 5).
