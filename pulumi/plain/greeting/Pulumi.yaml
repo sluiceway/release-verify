@@ -26,5 +26,12 @@ resources:
       byteLength: 2
     options:
       version: 4.21.2
+  # Added by the release verification, scenario 22.
+  moved-after-tick:
+    type: random:RandomId
+    properties:
+      byteLength: 3
+    options:
+      version: 4.21.2
 outputs:
   name: ${name.id}
