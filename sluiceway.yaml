@@ -3,7 +3,7 @@
 # run. Every value here is fake.
 
 dashboard:
-  redact: true
+  personality: false
   title: Sluiceway release verification
   showValues:
     - environment.GREETING
