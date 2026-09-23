@@ -8,27 +8,17 @@ config:
     type: string
     secret: true
 resources:
+  # The command "hello" is gone, so a deploy deletes it (release verification,
+  # scenario 17).
   # A random name, made once and kept.
   name:
     type: random:RandomPet
     properties:
-      length: 2
+      # 3 in place of 2 replaces the name (release verification, scenario 17).
+      length: 3
       prefix: greeting
     options:
       version: 4.21.2
-  # Runs `echo` on the runner at deploy time. No cloud, no credentials.
-  hello:
-    type: command:local:Command
-    properties:
-      create: echo "$GREETING from $NAME"
-      environment:
-        GREETING: ${greeting}
-        NAME: ${name.id}
-        # A fake value that must never show on the dashboard.
-        NOTE: CANARY-VALUE
-        TOKEN: ${token}
-    options:
-      version: 1.2.1
   # One more resource, so the diff changes (release verification, scenario 5).
   suffix:
     type: random:RandomId
