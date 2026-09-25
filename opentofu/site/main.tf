@@ -28,24 +28,14 @@ variable "token" {
   default     = "CANARY-SECRET"
 }
 
+# A length of 3 replaces the name (release verification, scenario 17).
 resource "random_pet" "name" {
   prefix = var.environment
+  length = 3
 }
 
-# The site's settings. A new title in a var file is an update of this
-# resource. The note is a fake value that must never show on the dashboard.
-resource "terraform_data" "site" {
-  input = {
-    name  = random_pet.name.id
-    title = var.title
-    note  = "CANARY-VALUE"
-  }
-
-  # A new token replaces the resource. The token goes here and not into
-  # input: terraform_data copies input to its output without the sensitive
-  # mark, and the tool's own diff would then print it.
-  triggers_replace = var.token
-}
+# The site's settings are gone, so a deploy deletes them (release
+# verification, scenario 17).
 
 output "name" {
   value = random_pet.name.id
