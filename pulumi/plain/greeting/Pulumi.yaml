@@ -31,3 +31,4 @@ resources:
       version: 1.2.1
 outputs:
   name: ${name.id}
+# A comment changes no diff (release verification, scenario 5).
