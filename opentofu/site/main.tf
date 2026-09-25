@@ -50,3 +50,8 @@ resource "terraform_data" "site" {
 output "name" {
   value = random_pet.name.id
 }
+
+# One more resource, so the diff changes (release verification, scenario 5).
+resource "random_id" "suffix" {
+  byte_length = 2
+}
