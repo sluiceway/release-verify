@@ -36,3 +36,6 @@ stacks:
     name: prod
     tickers:
       - example-release-manager
+  # Its preview fails on purpose (release verification, scenario 18).
+  - path: opentofu/broken
+    tool: opentofu
