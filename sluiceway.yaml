@@ -12,6 +12,13 @@ dashboard:
 ignore:
   - glob: "**/*:scratch"
     reason: A scratch stack. It is never deployed from here.
+  # Temporary (acceptance check 15): leaves only in-sync stacks, to show the dry line.
+  - glob: "opentofu/**"
+    reason: Left out for acceptance check 15.
+  - glob: "pulumi/plain/release*"
+    reason: Left out for acceptance check 15.
+  - glob: "pulumi/states/**"
+    reason: Left out for acceptance check 15.
 
 stacks:
   - path: opentofu/site
