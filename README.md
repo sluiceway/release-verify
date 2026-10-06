@@ -1,3 +1,5 @@
 # Test bed of the release verification
 
-This repo is written by the release verification of [Sluiceway](https://github.com/sluiceway/sluiceway), whose driver lives in [sluiceway/examples](https://github.com/sluiceway/examples/tree/main/release-verify). Between runs it holds only this file and the LICENSE. The last run verified Sluiceway v0.44.0: see [the driver](https://github.com/sluiceway/examples/tree/main/release-verify).
+This repo is written by the release verification of [Sluiceway](https://github.com/sluiceway/sluiceway), whose driver lives in [sluiceway/examples](https://github.com/sluiceway/examples/tree/main/release-verify). Every run force-pushes `main`, and resets the issues, runs, artifacts and deployment records here. Nothing in it is kept, and every value in it is fake.
+
+This run verifies Sluiceway v0.
