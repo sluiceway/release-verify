@@ -1,0 +1,59 @@
+# Issue sluiceway/sluiceway#292: the documented permissions, then the same with
+# statuses: read. Each job probes the query in parts and then scans.
+name: issue-292
+
+on:
+  workflow_dispatch:
+
+jobs:
+  documented:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      issues: write
+      deployments: write
+      actions: write
+      pull-requests: read
+      checks: write
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/probe.sh
+      - uses: opentofu/setup-opentofu@v2
+        with:
+          tofu_version: "1.12.6"
+          tofu_wrapper: false
+      - id: sluiceway
+        uses: sluiceway/sluiceway@v0.48.0
+        with:
+          mode: scan
+  with-statuses:
+    runs-on: ubuntu-latest
+    needs: documented
+    if: ${{ !cancelled() }}
+    permissions:
+      contents: read
+      issues: write
+      deployments: write
+      actions: write
+      pull-requests: read
+      checks: write
+      statuses: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Probe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/probe.sh
+      - uses: opentofu/setup-opentofu@v2
+        with:
+          tofu_version: "1.12.6"
+          tofu_wrapper: false
+      - id: sluiceway
+        uses: sluiceway/sluiceway@v0.48.0
+        with:
+          mode: scan

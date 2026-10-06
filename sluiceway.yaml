@@ -1,0 +1,8 @@
+# Issue sluiceway/sluiceway#292: a scan that reads the open pull requests.
+dashboard:
+  title: "Issue 292: open pull requests"
+stacks:
+  - path: stack
+    tool: opentofu
+mergeAndDeploy:
+  authors: [robbeverhelst]
