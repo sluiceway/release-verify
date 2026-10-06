@@ -5,6 +5,7 @@
 dashboard:
   title: Sluiceway release verification
   redact: true
+  personality: false
   showValues:
     - environment.GREETING
 
