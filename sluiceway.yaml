@@ -4,6 +4,7 @@
 
 dashboard:
   title: Sluiceway release verification
+  redact: true
   showValues:
     - environment.GREETING
 
