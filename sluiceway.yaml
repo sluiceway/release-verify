@@ -1,47 +1,16 @@
-# Sluiceway's settings for the test bed of the release verification. The
-# driver in sluiceway/examples (release-verify/) writes this repo on every
-# run. Every value here is fake.
-
+# Temporary (acceptance check 15): only the in-sync stacks are left, to show
+# the dry line of dashboard.personality: false. Restored by the next commit.
 dashboard:
   title: Sluiceway release verification
   redact: true
   personality: false
-  showValues:
-    - environment.GREETING
 
 ignore:
   - glob: "**/*:scratch"
     reason: A scratch stack. It is never deployed from here.
-  # Temporary (acceptance check 15): leaves only in-sync stacks, to show the dry line.
   - glob: "opentofu/**"
     reason: Left out for acceptance check 15.
   - glob: "pulumi/plain/release*"
     reason: Left out for acceptance check 15.
   - glob: "pulumi/states/**"
     reason: Left out for acceptance check 15.
-
-stacks:
-  - path: opentofu/site
-    name: dev
-    tool: opentofu
-    options:
-      workspace: dev
-      varFiles: [dev.tfvars]
-  # Only an admin may tick site:prod. A tick by a writer is refused with a
-  # comment (release verification, scenario 7).
-  - path: opentofu/site
-    name: prod
-    tool: opentofu
-    tickers: admin
-    options:
-      workspace: prod
-      varFiles: [prod.tfvars]
-  - path: opentofu/notes
-    tool: opentofu
-
-  # Only a login that belongs to nobody may tick release:prod, so every tick
-  # on it is refused with a comment (release verification, scenario 7).
-  - path: pulumi/plain/release
-    name: prod
-    tickers:
-      - example-release-manager
