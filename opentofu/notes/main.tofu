@@ -40,3 +40,8 @@ resource "terraform_data" "hostile" {
   for_each = toset(["#1 @sluiceway www.example.com *x*"])
   input    = "plain"
 }
+
+# Added while a tick on this stack waits for apply (acceptance check 9).
+resource "random_id" "extra" {
+  byte_length = 2
+}
